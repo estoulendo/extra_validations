@@ -1,19 +1,15 @@
 require 'spec_helper'
 
+class DummyModelForCollectionLengthValidation
+  include ActiveModel::Model
+  include ExtraValidations
+
+  attr_accessor :my_collection
+  validates :my_collection, collection_length: 1..5
+end
+
 describe ExtraValidations::CollectionLengthValidator do
-  subject do
-    Class.new do
-      include ActiveModel::Model
-      include ExtraValidations
-
-      attr_accessor :my_collection
-      validates :my_collection, collection_length: 1..5
-
-      def self.name
-        'MyModel'
-      end
-    end.new
-  end
+  subject { DummyModelForCollectionLengthValidation.new }
 
   context 'validator called without passing a range' do
     it 'raises an argument error' do

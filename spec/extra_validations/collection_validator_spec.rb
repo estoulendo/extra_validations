@@ -1,32 +1,22 @@
 require 'spec_helper'
 
+class DummyModelForCollection
+  include ActiveModel::Model
+
+  attr_accessor :name
+  validates :name, presence: true
+end
+
+class DummyModelForCollectionValidation
+  include ActiveModel::Model
+  include ExtraValidations
+
+  attr_accessor :my_collection
+  validates :my_collection, collection: true
+end
+
 describe ExtraValidations::CollectionValidator do
-  let(:dummy_model) do
-    Class.new do
-      include ActiveModel::Model
-
-      attr_accessor :name
-      validates :name, presence: true
-
-      def self.name
-        'MyModelValidator'
-      end
-    end
-  end
-
-  subject do
-    Class.new do
-      include ActiveModel::Model
-      include ExtraValidations
-
-      attr_accessor :my_collection
-      validates :my_collection, collection: true
-
-      def self.name
-        'MyModel'
-      end
-    end.new
-  end
+  subject { DummyModelForCollectionValidation.new }
 
   it 'allows empty collections' do
     subject.my_collection = []
@@ -41,8 +31,8 @@ describe ExtraValidations::CollectionValidator do
   context 'collection with invalid objects' do
     before do
       subject.my_collection = []
-      subject.my_collection << dummy_model.new(name: 'Foo')
-      subject.my_collection << dummy_model.new(name: '')
+      subject.my_collection << DummyModelForCollection.new(name: 'Foo')
+      subject.my_collection << DummyModelForCollection.new(name: '')
     end
 
     it 'ensures that each object in the collection is valid' do
@@ -54,8 +44,8 @@ describe ExtraValidations::CollectionValidator do
   context 'collections with only valid objects' do
     before do
       subject.my_collection = []
-      subject.my_collection << dummy_model.new(name: 'Foo')
-      subject.my_collection << dummy_model.new(name: 'Bar')
+      subject.my_collection << DummyModelForCollection.new(name: 'Foo')
+      subject.my_collection << DummyModelForCollection.new(name: 'Bar')
     end
 
     it 'allows all objects' do
