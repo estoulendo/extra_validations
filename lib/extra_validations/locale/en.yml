@@ -1,0 +1,9 @@
+en:
+  errors:
+    messages:
+      too_few:
+        one: "must have at least one"
+        other: "must have at least %{count}"
+      too_many:
+        one: "must have at most one"
+        other: "must have at most %{count}"
