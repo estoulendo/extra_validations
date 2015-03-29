@@ -17,9 +17,9 @@ describe ExtraValidations::CollectionLengthValidator do
 
   context 'validator called without passing a range' do
     it 'raises an argument error' do
-      expect {
+      expect do
         subject.class.validates :my_collection, collection_length: []
-      }.to raise_error(':in must be a Range')
+      end.to raise_error(':in must be a Range')
     end
   end
 
