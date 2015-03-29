@@ -7,3 +7,4 @@ en:
       too_many:
         one: "must have at most one"
         other: "must have at most %{count}"
+      not_found: "not found"
