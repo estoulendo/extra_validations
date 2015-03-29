@@ -1,7 +1,7 @@
 module ExtraValidations
   class CollectionValidator < ActiveModel::EachValidator
     def validate_each(record, attribute, collection)
-      return if !collection || collection.empty?
+      return if collection.blank?
 
       collection
         .each(&:valid?)

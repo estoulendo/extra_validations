@@ -10,13 +10,11 @@ module ExtraValidations
       min = options[:in].begin
       max = options[:in].end
 
-      collection_any = collection && collection.any?
-
-      if !collection_any || collection.length < min
+      if collection.blank? || collection.length < min
         record.errors.add(attribute, :too_few, count: min)
       end
 
-      if collection_any && collection.length > max
+      if collection.present? && collection.length > max
         record.errors.add(attribute, :too_many, count: max)
       end
     end
