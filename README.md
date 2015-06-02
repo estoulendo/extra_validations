@@ -1,5 +1,8 @@
 # ExtraValidations
 
+[![Build Status][travis_badge]][travis_link]
+[![Code Climate][cclimate_badge]][cclimate_link]
+
 This gem provides some extra validations for ActiveModel objects.
 
 ## Installation
@@ -65,3 +68,8 @@ commits and tags, and push the `.gem` file to
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+[travis_badge]: https://travis-ci.org/estoulendo/extra_validations.svg?branch=master
+[travis_link]: https://travis-ci.org/estoulendo/extra_validations
+[cclimate_badge]: https://codeclimate.com/github/estoulendo/extra_validations/badges/gpa.svg
+[cclimate_link]: https://codeclimate.com/github/estoulendo/extra_validations
