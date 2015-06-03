@@ -24,9 +24,7 @@ module ExtraValidations
   #
   class CollectionLengthValidator < ActiveModel::EachValidator
     def check_validity!
-      unless options[:in].is_a?(Range)
-        fail ArgumentError, ':in must be a Range'
-      end
+      fail ArgumentError, ':in must be a Range' unless options[:in].is_a?(Range)
     end
 
     # @param record An object that has ActiveModel::Validations included
