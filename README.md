@@ -50,6 +50,12 @@ Nested validator (ensures that the object is valid):
 validates :model, nested: true
 ```
 
+Uniqueness validator:
+
+```ruby
+validates :email, uniqueness: ->(email) { Model.exists?(email: email) }
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run
